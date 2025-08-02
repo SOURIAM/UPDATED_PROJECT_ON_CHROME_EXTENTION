@@ -1,0 +1,1 @@
+// Content script placeholder for future autofill logic
