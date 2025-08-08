@@ -1,4 +1,4 @@
-const apiBase = "http://localhost:5000"; // Make sure your Node backend is running here
+const apiBase = "http://localhost:5001"; // Make sure your Node backend is running here
 
 document.getElementById("loginBtn").addEventListener("click", async () => {
   const user = document.getElementById("adminUser").value;
@@ -51,3 +51,21 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   document.getElementById("dashboardSection").style.display = "none";
   document.getElementById("loginSection").style.display = "block";
 })
+
+// Get all users
+app.get('/admin/users', async (req, res) => {
+  const users = await User.find();
+  res.json({ users });
+});
+
+// Delete a user
+app.delete('/admin/user/:id', async (req, res) => {
+  await User.findByIdAndDelete(req.params.id);
+  res.json({ success: true });
+});
+// Admin Dashboard JavaScript
+// Logout functionality
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  document.getElementById("dashboardSection").style.display = "none";
+  document.getElementById("loginSection").style.display = "block";
+});
